@@ -1,0 +1,195 @@
+<!--
+    Author:  Heli Patel
+    File:    templates/index.html
+    Purpose: Frontend registration form for college events (Tech Fest,
+             Cultural Events and Workshops). Served via Flask and styled
+             using style.css from the static folder.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Event Registration</title>
+
+    <!-- Google Fonts for typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Main stylesheet served by Flask from the static folder -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <!-- Animated background blobs and grid overlay for visual depth -->
+    <div class="bg-blob blob-1"></div>
+    <div class="bg-blob blob-2"></div>
+    <div class="bg-blob blob-3"></div>
+    <div class="grid-overlay"></div>
+
+    <div class="page-wrapper">
+
+        <!-- Status badge -->
+        <div class="badge">
+            <span class="badge-dot"></span>
+            Registrations Now Open
+        </div>
+
+        <!-- Main registration card -->
+        <div class="card">
+            <div class="card-accent"></div>
+            <div class="card-inner">
+
+                <!-- Card header with logo, title and subtitle -->
+                <div class="card-header">
+                    <div class="logo-mark">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                            <path d="M16 2L28 8V16C28 22.627 22.627 28 16 28C9.373 28 4 22.627 4 16V8L16 2Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                            <path d="M16 8L22 11.5V16C22 19.313 19.313 22 16 22C12.687 22 10 19.313 10 16V11.5L16 8Z" fill="currentColor" opacity="0.3"/>
+                        </svg>
+                    </div>
+                    <h1>College Event <span class="highlight">Registration</span></h1>
+                    <p class="subtitle">Join college events worth experiencing & remembering</p>
+                </div>
+
+                <!-- Section divider -->
+                <div class="divider">
+                    <span></span><span class="divider-text">student details</span><span></span>
+                </div>
+
+                <!-- Registration form — submits to Flask /register route via POST -->
+                <form id="registrationForm" novalidate>
+
+                    <!-- Full name input -->
+                    <div class="field-group">
+                        <label for="full_name">Full Name</label>
+                        <div class="input-wrapper">
+                            <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                <circle cx="12" cy="7" r="4"/>
+                            </svg>
+                            <input type="text" id="full_name" name="full_name" placeholder="e.g. Arjun Sharma" required autocomplete="name">
+                        </div>
+                    </div>
+
+                    <!-- Event type dropdown -->
+                    <div class="field-group">
+                        <label for="event_name">Event Type</label>
+                        <div class="input-wrapper select-wrapper">
+                            <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                                <line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/>
+                                <line x1="3" y1="10" x2="21" y2="10"/>
+                            </svg>
+                            <select id="event_name" name="event_name" required>
+                                <option value="">— Select an Event —</option>
+                                <option value="Tech Fest">🚀 Tech Fest</option>
+                                <option value="Cultural Events">🎭 Cultural Events</option>
+                                <option value="Workshops">🛠️ Workshops</option>
+                            </select>
+                            <svg class="chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <polyline points="6 9 12 15 18 9"/>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- Email address input -->
+                    <div class="field-group">
+                        <label for="email">Email Address</label>
+                        <div class="input-wrapper">
+                            <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <polyline points="22,6 12,13 2,6"/>
+                            </svg>
+                            <input type="email" id="email" name="email" placeholder="you@college.edu" autocomplete="email">
+                        </div>
+                    </div>
+
+                    <!-- Submit button -->
+                    <button type="submit" id="submitBtn">
+                        <span class="btn-text">Register Now</span>
+                        <span class="btn-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <line x1="5" y1="12" x2="19" y2="12"/>
+                                <polyline points="12 5 19 12 12 19"/>
+                            </svg>
+                        </span>
+                        <div class="btn-shimmer"></div>
+                    </button>
+
+                </form>
+
+                <!-- Success or error message displayed after form submission -->
+                <div id="message" class="message" role="alert" aria-live="polite"></div>
+
+                <!-- Footer note -->
+                <p class="footer-note">🔒 Your information is kept private and secure.</p>
+
+            </div>
+        </div>
+
+        <!-- Quick stats shown below the card -->
+        <div class="stats-row">
+            <div class="stat-pill"><strong>3</strong> College Events</div>
+            <div class="stat-pill"><strong>500+</strong> Students</div>
+            <div class="stat-pill"><strong>Free</strong> Entry</div>
+        </div>
+
+    </div>
+
+    <script>
+        // Add focused/filled CSS classes to input wrappers for styling on interaction
+        document.querySelectorAll("input, select").forEach(el => {
+            el.addEventListener("focus", () => {
+                el.closest(".input-wrapper").classList.add("focused");
+            });
+            el.addEventListener("blur", () => {
+                el.closest(".input-wrapper").classList.remove("focused");
+                if (el.value) el.closest(".input-wrapper").classList.add("filled");
+                else el.closest(".input-wrapper").classList.remove("filled");
+            });
+        });
+
+        const form = document.getElementById("registrationForm");
+        const message = document.getElementById("message");
+        const submitBtn = document.getElementById("submitBtn");
+
+        // Handle form submission — sends data to Flask /register and displays response
+        form.addEventListener("submit", async function (e) {
+            e.preventDefault();
+
+            submitBtn.classList.add("loading");
+            submitBtn.disabled = true;
+            message.className = "message";
+            message.textContent = "";
+
+            const formData = new FormData(form);
+
+            try {
+                const response = await fetch("/register", {
+                    method: "POST",
+                    body: formData
+                });
+
+                const result = await response.json();
+
+                message.textContent = result.message;
+                message.className = "message " + (result.success ? "success" : "error");
+
+                if (result.success) {
+                    form.reset();
+                    document.querySelectorAll(".input-wrapper").forEach(w => w.classList.remove("filled"));
+                }
+            } catch (error) {
+                message.textContent = "Something went wrong. Please try again.";
+                message.className = "message error";
+            } finally {
+                submitBtn.classList.remove("loading");
+                submitBtn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>
