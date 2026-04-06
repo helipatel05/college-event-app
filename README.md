@@ -34,17 +34,25 @@ cd college-event-app
 
 2.install dependencies:
 
-
-git clone https://github.com/helipatel05/college-event-app.git
-cd college-event-app
+pip install -r requirements.txt
 
 
-3.database configuration :
+3 .Step 1                  Step 2           Step 4          Step 5
+  │                          │               │               │
+  ▼                           ▼               ▼               ▼
+Browse                   Fill           Verify          🎉Registration submitted successfully!
+Events    →           Details    →        Email     →   
+                   (Name, event type)
+                              
+                                     
+                              
+
+4.database configuration :
 
 * Create a database named registrations in MySQL.
 * Update the host, user, and password in app.py.
 
-4.Run the applications :
+5.Run the applications :
  
 python app.py
 
