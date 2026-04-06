@@ -36,15 +36,15 @@ cd college-event-app
 
 pip install -r requirements.txt
 
-3.
+
                               
                                      
                               
 
 4.database configuration :
 
-* Create a database named registrations in MySQL.
-* Update the host, user, and password in app.py.
+* Create a database named capstoneproject in MySQL.
+* Update the host, user, in app.py.
 
 5.Run the applications :
  
